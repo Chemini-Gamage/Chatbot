@@ -9,7 +9,7 @@ OPENAI_API_KEY =os.environ["OPENAI_API_KEY"]
 #object creation
 client=OpenAI()
 #client is used to give a question and to generate the ans
-client.chat.completions.create(
+response =client.chat.completions.create(
     model ="gpt-3.5-turbo", 
     max_tokens =50,
     n=1,
