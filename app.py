@@ -9,13 +9,31 @@ OPENAI_API_KEY =os.environ["OPENAI_API_KEY"]
 #object creation
 client=OpenAI()
 #client is used to give a question and to generate the ans
-response =client.chat.completions.create(
-    model ="gpt-3.5-turbo", 
-    max_tokens =50,
-    n=1,
-    temperature=0,
+#to take the user input
+#while to iterate
+while True:
+
+    question =input("User:")
+
+    if question != "bye":
+     response =client.chat.completions.create(
+        model ="gpt-3.5-turbo", 
+    #to tell the number of tokens which cn be recieved is 50 tokens here
+        max_tokens =50,
+    #number of responses received is "n"
+        n=1,
+    #temperature to measure the randomeness of the response
+        temperature=0.3,
     #cn assign roles here
-    messages =[
-        {"role":"user", "content":"Hello"}
+        messages =[
+        {"role":"user", "content":question}
     ]
 )
+#cn have multiple responses
+    for choice in response.choices:
+         print(f"AI: {choice.message.content}")
+
+               
+    else:
+      print("AI :Bye")
+      break             
